@@ -1,0 +1,21 @@
+{% extends "base/default-page.html" %}
+{% block content %}
+
+<div class="ui vertical masthead segment" style="background-color:rgba(242,245,245,0.8)">
+  <div class="ui padding-left aligned container" style="margin-bottom: 1%;">
+    <div class="ui teal clearing segment" style="margin-top: 7%;margin-bottom:25%;">
+      <div class="ui left aligned container" style="margin-bottom: 1%;">
+        <h1>
+          <h1 style="color: rgb(0, 0, 0);left: 50%;">
+            ข้อมูล
+            <span style="color: red;">
+              {{ user.firstname }}
+              {{ user.lastname }}
+            </span>
+          </h1>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>    
+{% endblock %}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        #mapid { 
+            height: 60rem;
+            background-color:white;
+        }
+        #back_btt{
+            position: absolute; 
+            margin: 9px;
+            padding: 10px;
+            width: 80px; 
+            background-color: #ffffff; 
+            border-radius: 10%;
+            font-size: 30px; 
+            text-align: center; 
+            z-index: 10;
+          }
+    </style>
+    <title>{% block title  %}{{ config.get('APP_TITLE') }}{% endblock %}</title>
+    <script src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/fomantic-ui-css/semantic.min.css') }}">
+    <script src="{{ url_for('static', filename='node_modules/fomantic-ui-css/semantic.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/brython/brython.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/brython/brython_stdlib.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/leaflet/dist/leaflet.css') }}" />
+    <script src="{{ url_for('static', filename='node_modules/leaflet/dist/leaflet.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/leaflet-draw/dist/leaflet.draw.css') }}" />
+    <script src="{{ url_for('static', filename='node_modules/leaflet-draw/dist/leaflet.draw.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/leaflet-geometryutil/src/leaflet.geometryutil.js') }}"></script>
+</head>
+
+<body onload="brython()">
+    {% block body %}{% endblock %}
+</body>
+</html>

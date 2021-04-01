@@ -1,0 +1,48 @@
+{% extends "base/default-page.html" %}
+{% block content %}
+
+<div class="ui vertical masthead segment" style="background-color:rgba(242,245,245,0.8)">
+  <div class="ui padding-left aligned container" style="margin-bottom: 1%;">
+    <div class="ui teal clearing segment" style="margin-top: 7%;margin-bottom:25%;">
+      <div class="ui left aligned container" style="margin-bottom: 1%;">
+        <h1>
+          <h1 style="color: rgb(0, 0, 0);left: 50%;">
+            ข้อมูล
+            <form class="ui form" action='' method="POST" style="width: 90%; left:5% ;" enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                <h1>
+                  แก้ไขข้อมูล
+                </h1>
+                <div class="ui divider"></div>
+                <div class="field">
+                  <h3 class="ui header">ข้อมูลส่วนตัว</h3>
+                </div>
+                <div class="two fields">
+                  <div class="field">
+                    {{ form.firstname.label }}
+                    {{ form.firstname }}
+                    {% for error in form.lastname.errors %}
+                    <p style="color: red;">* โปรดใส่</p>
+                    {% endfor %}
+                  </div>
+                  <div class="field">
+                    {{ form.lastname.label }}
+                    {{ form.lastname }}
+                    {% for error in form.lastname.errors %}
+                    <p style="color: red;">* โปรดใส่</p>
+                    {% endfor %}
+                  </div>
+                </div>
+                <a href="{{ url_for('users.record')}}" target="_blank">
+                  <button class="ui teal button" type="submit" style="right: 0%;">
+                    <div class="visible content">ยืนยัน</div>
+                  </button>
+                </a>
+            </form>
+          </h1>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>    
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base/default-page.html" %}
+{% block content %}
+<div class="pusher">
+  <div class="ui vertical masthead segment" style="background-color: rgba(242,245,245,0.8)">
+    <div class="ui container">
+      <div class="ui teal segment" style="margin-top:7%;margin-bottom:100%;">
+        <h1>
+          Maps ทั้งหมด
+        </h1>
+        <div class="ui divider">
+        </div>
+        <div class="ui bottom attached tab segment active" data-tab="first">
+          <div class="ui">
+            <table id="mytable" class="ui teal celled table">
+              <thead>
+                <tr>
+                  <th>Center[Lat, Long]</th>
+                  <th>Radius</th>
+                  <th>xx</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for map in maps %}
+                <tr>
+                  <td>
+                    <div class="left floated left aligned two wide column">
+                      <a class="right aligned content" id="namelist" style="color: black;">
+                        {{ map.center[0] }} {{map.center[1]}}
+                      </a>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="left floated left aligned two wide column">
+                      <a class="right aligned content"  style="color: black;">
+                        {{ map.radius }}
+                      </a>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="left floated left aligned two wide column">
+                      <a class="right aligned content" href="{{ url_for('maps.record') }}">
+                        Show
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

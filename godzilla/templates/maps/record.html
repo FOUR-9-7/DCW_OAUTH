@@ -1,0 +1,80 @@
+{% extends '/base/base-map.html' %}
+{% block body %}
+<div class="ui vertical masthead segment" style="background-color: cornsilk;width: 100%; height: 100%;">
+    <div id="mapid" style="z-index:1;"></div>
+    <div align="right" style="margin-top:2em;z-index: 2;position: absolute;
+                              top: 100px;right: 10px;;padding: 5px">
+        <button id="record" class="ui teal button" style="margin-top:5px">
+            บันทึก</button>
+    </div>
+</div>
+
+<script type="text/python">
+from browser import document, window, ajax
+import javascript as js
+import datetime
+import json
+
+
+# Access the leaflet.js API
+leaflet = window.L
+
+openstreet = leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    "maxZoom": 19,
+	"attribution": '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+})
+
+center = {{center}}
+zoom = {{zoom}}
+map = leaflet.map('mapid', {
+    'center': center,
+    'zoom': zoom,
+    'layers': openstreet
+})
+drawnItems = leaflet.FeatureGroup.new()
+map.addLayer(drawnItems)
+drawControl = leaflet.Control.Draw.new({
+         'edit': {
+             'featureGroup': drawnItems
+         }
+})
+
+map.addControl(drawControl)
+
+#จำเป็นต้องใช้กรุ๊ปเพราะจำเป็นต้องใช้ต่อและไม่สามารถอ้างอิงก่อนจะ assign ภายในฟังก์ชันได้
+circle_layers = leaflet.layerGroup([])
+
+def save_data(e):
+    layers = circle_layers.getLayers()
+    if layers:
+        layer = layers[0]
+        latlng = layer.getLatLng()
+        layer_center = [latlng.lat, latlng.lng]
+        layer_radius = layer.getRadius()
+        
+        req = ajax.ajax()
+        req.open('POST', '/maps/record', True)
+        req.set_header('content-type', 'application/json')
+        data = json.dumps(
+            {'center': layer_center,
+            'radius': layer_radius}
+        )
+        req.send(data)
+        print("data was saved")
+
+def create_circle(e):
+    if e.layerType == 'circle':
+        layer = e.layer
+        latlng = layer.getLatLng()
+        layer_center = [latlng.lat, latlng.lng]
+        layer_radius = layer.getRadius()
+        circle_layer = leaflet.circle(layer_center, {'radius': layer_radius})
+        circle_layers.clearLayers()
+        circle_layers.addLayer(circle_layer)
+        circle_layers.addTo(map)
+        
+map.on('draw:created', create_circle)
+document["record"].bind("click", save_data)
+
+</script>
+{% endblock %}
