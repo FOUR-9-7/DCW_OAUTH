@@ -1,0 +1,54 @@
+{% extends "/base/default-page.html" %}
+{% block content %}
+
+
+
+<div class="ui inverted vertical masthead center aligned segment" style=" background-color:rgba(242,245,245,0.8)">
+  <div class="ui white tablet stackable steps" style="margin-top:7%; margin-bottom:7% ; height: 300px; width: 50%;">
+    <div class="step">
+      <div class="content">
+        <img class="ui small circular image" src="/static/images/durian_min.png">
+        <div class="title">
+          <h1>
+            Monthong
+          </h1>
+        </div>
+        <div class="description">หน้าเข้าสู่ระบบ</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="ui center aligned content">
+        <h1>
+          <a href="{{ url_for('loginpass.login', name='facebook') }}" style="width: 100%" class="ui blue button">
+            <i class="facebook icon"></i>
+            Facebook
+          </a>
+        </h1>
+        <h1 class="ui horizontal divider">
+          หรือ
+        </h1>
+        <h1>
+          <a href="{{ url_for('loginpass.login', name='google') }}" style="width: 100%" class="ui red button">
+            <i class="google plus icon"></i>
+            Google
+          </a>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function modalfunction() {
+    $('.ui.modal')
+      .modal('show')
+      ;
+  }
+
+</script>
+<!-- ภาพโดย <a href="https://pixabay.com/th/users/arhavisual-10419485/?utm_source=
+	link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4250449">Arhagus Budy</a>
+	 จาก <a href="https://pixabay.com/th/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4250449">
+		Pixabay</a>-->
+{% endblock %}

@@ -1,0 +1,385 @@
+# -*- coding: utf-8 -*-
+
+<AppPopup>:
+    auto_dismiss: False
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            size_hint_y: .9
+            text: root.message
+            font_size: 35
+        AnchorLayout:
+            anchor_x: 'center'
+            # anchor_y: 'center'
+            Button:
+                text: 'Close'
+                size_hint: None, None
+                height: sp(50)
+                width: sp(200)
+                font_size: 35
+                on_release: root.dismiss()
+
+<MongthongScreenManager>:
+    LoginScreen:
+        id: login
+        name: 'login'
+    RegisterScreen:
+        id: register
+        name: 'register'
+
+
+<SimpleLabel@Label>:
+    font_size: '25sp'
+    bold: True
+    size_hint: (None, None)
+    # height: 45
+    pos_hint: {'left': 1}
+    size: self.texture_size
+
+
+<SimpleTextInput@TextInput>:
+    font_size: '25sp'
+    bold: True
+    size_hint_y: None
+    height: self.minimum_height
+    multiline: False
+
+<HeaderLabel@Label>:
+    # size_hint: 1, 1
+    font_size: '30sp'
+    bold: True
+
+<CheckBoxLabel@Label>:
+    font_size: '25sp'
+    bold: True
+    pos_hint: {'left': 1}
+    size: self.texture_size
+    size_hint_x: None
+    valign: 'center'
+    size: self.texture_size
+
+
+<LoginScreen>:
+    name: 'login_screen'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+        AnchorLayout:
+            anchor_y: 'bottom'
+            size_hint: (1, .4)
+            Label:
+                text: 'Login'
+                font_size: '30sp'
+                bold: True
+                size_hint: (1, .3)
+                pos_hint: {'bottom': 1}
+        AnchorLayout:
+            size: self.parent.size
+            anchor_x: 'center'
+            anchor_y: 'top'
+            BoxLayout:
+                spacing: 10
+                size_hint: (None, None)
+                width: '300sp'
+                height: '350sp'
+                orientation: 'vertical'
+                Label:
+                    text: 'Username'
+                    size_hint: (None, .2)
+                    # size_hint_x: None
+                    size: self.texture_size
+                    pos_hint: {'left': 1}
+                    font_size: '25sp'
+                    bold: True
+                TextInput:
+                    id: username
+                    hint_text: 'Username'
+                    multiline: False
+                    size_hint_y: None
+                    height: self.minimum_height
+                    font_size: '25sp'
+                Label:
+                    text: 'Password'
+                    size_hint: (None, .2)
+                    size: self.texture_size
+                    pos_hint: {'left': 1}
+                    font_size: '25sp'
+                    bold: True
+                TextInput:
+                    id: password
+                    hint_text: 'Password'
+                    password: True
+                    multiline: False
+                    size_hint_y: None
+                    height: self.minimum_height
+                    font_size: '25sp'
+                BoxLayout:
+                    padding: 0, 10, 0, 0
+                    Button:
+                        pos_hint: {'top': 1}
+                        size_hint: (1, None)
+                        text: 'Login'
+                        font_size: '25sp'
+                        size: self.texture_size
+                        on_press: root.login()
+                    Button:
+                        pos_hint: {'top': 1}
+                        size_hint: (1, None)
+                        text: 'Reset'
+                        font_size: '25sp'
+                        size: self.texture_size
+                        on_press: root.reset()
+                BoxLayout:
+                    spacing: 20
+                    Label:
+                        id: login_message
+                        font_size: '25sp'
+                        color: 1, 0, 0, 1
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        pos_hint: {'left': 1}
+                        bold: True
+
+
+
+<RegisterScreen>:
+    id: register_screen
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10, 10, 10, 10
+        HeaderLabel:
+            size_hint_y: None
+            height: 50
+            text: 'Gardener Information'
+        BoxLayout:
+            spacing: 10
+            BoxLayout:
+                padding: 10
+                Image:
+                    id: gardener_image
+                    pos_hint: {'top': 1}
+                    source: 'r202.png'
+                    size: self.texture_size
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 10
+                BoxLayout:
+                    spacing: 10
+                    BoxLayout:
+                        orientation: 'vertical'
+                        SimpleLabel:
+                            text: 'คำนำหน้า'
+                        SimpleTextInput:
+                            id: title_input
+                            text: 'คุณ'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        SimpleLabel:
+                            text: 'ชื่อ'
+                        SimpleTextInput:
+                            id: firstname_input
+                            text: 'F'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        SimpleLabel:
+                            text: 'นามสกุล'
+                        SimpleTextInput:
+                            id: lastname_input
+                            text: 'L'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'เลขประจำตัวประชาชน'
+                    SimpleTextInput:
+                        id: id_input
+                        text: 'xxxxxxxxxxxxx'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: 10
+                    BoxLayout:
+                        spacing: 10
+                        BoxLayout:
+                            orientation: 'vertical'
+                            SimpleLabel:
+                                text: 'เกิดวันที่'
+                            SimpleTextInput:
+                                id: birth_input
+                                text: '01/01/2527'
+                        BoxLayout:
+                            orientation: 'vertical'
+                            SimpleLabel:
+                                text: 'เพศ'
+                            SimpleTextInput:
+                                id: gender_input
+                                text: 'ชาย'
+
+        BoxLayout:
+            #  size_hint: (1, None)
+            # height: 200
+            orientation: 'vertical'
+            BoxLayout:
+                spacing: 10
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'บ้านเลขที่'
+                    SimpleTextInput:
+                        id: address_number
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'หมู่'
+                    SimpleTextInput:
+                        id: address_moo
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'ตรอก'
+                    SimpleTextInput:
+                        id: address_alleyway
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'ซอย'
+                    SimpleTextInput:
+                        id: address_alley
+            BoxLayout:
+                spacing: 10
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'ถนน'
+                    SimpleTextInput:
+                        id: address_street
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'ตำบล'
+                    SimpleTextInput:
+                        id: address_subdistrict
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'อำเภอ'
+                    SimpleTextInput:
+                        id: address_district
+            BoxLayout:
+                spacing: 10
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'จังหวัด'
+                    SimpleTextInput:
+                        id: address_province
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'รหัสไปรษณ์'
+                    SimpleTextInput:
+                        id: address_postcode
+                BoxLayout:
+                    orientation: 'vertical'
+                    SimpleLabel:
+                        text: 'โทรศัพท์'
+                    SimpleTextInput:
+                        id: phone
+
+            BoxLayout:
+                padding: 0, '10sp', 0, 0
+                spacing: 10
+                orientation: 'vertical'
+
+                SimpleLabel:
+                    text: 'เอกสาร'
+                BoxLayout:
+                    BoxLayout:
+                        CheckBox:
+                            id: document_copy_of_id_card
+                            size_hint_x: None
+                            active: True
+                        CheckBoxLabel:
+                            text: 'สำเนาบัตรประชาชน'
+                    BoxLayout:
+                        CheckBox:
+                            id: document_copy_of_bankbook
+                            size_hint_x: None
+                            active: True
+                        CheckBoxLabel:
+                            text: 'สำเนาหน้าแรกบัญชีธนาคาร'
+                    BoxLayout:
+                        CheckBox:
+                            id: document_land_rights_documents
+                            size_hint_x: None
+                            active: True
+                        CheckBoxLabel:
+                            text: 'เอกสารสิทธิ์ที่ดิน (แปลงที่เข้าร่วม)'
+                    BoxLayout:
+                        CheckBox:
+                            id: document_gap_certificaiton_documents
+                            size_hint_x: None
+                            active: True
+                        CheckBoxLabel:
+                            text: 'เอกสารรับรอง GAP (ถ้ามี)'
+
+            BoxLayout:
+                padding: 0, '10sp', 0, 0
+                spacing: 10
+                orientation: 'vertical'
+
+                SimpleLabel:
+                    text: 'สถานะเกษตรกร'
+                BoxLayout:
+                    BoxLayout:
+                        CheckBox:
+                            id: gardener_new
+                            group: 'status'
+                            size_hint_x: None
+                            active: True
+                        CheckBoxLabel:
+                            text: 'รายใหม่'
+                    BoxLayout:
+                        CheckBox:
+                            id: gardener_old
+                            group: 'status'
+                            size_hint_x: None
+                        CheckBoxLabel:
+                            text: 'รายเดิม'
+                    BoxLayout:
+                        CheckBox:
+                            id: gardener_old_appeal
+                            group: 'status'
+                            size_hint_x: None
+                        CheckBoxLabel:
+                            text: 'รายเดิม (อุทธรณ์)'
+
+
+
+        BoxLayout:
+            height: 50
+            spacing: 10
+            size_hint: (1, None)
+            AnchorLayout:
+                size: self.parent.size
+                anchor_x: 'left'
+
+                Button:
+                    text: 'Read'
+                    size_hint: (1, None)
+                    size: self.texture_size
+                    font_size: '30sp'
+                    on_press: register_screen.read_id_card()
+            AnchorLayout:
+                size: self.parent.size
+                anchor_x: 'right'
+
+                Button:
+                    text: 'Register'
+                    size_hint: (1, None)
+                    size: self.texture_size
+                    font_size: '30sp'
+                    on_press: register_screen.register()

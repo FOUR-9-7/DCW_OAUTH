@@ -1,0 +1,3 @@
+[console_scripts]
+dustpath-web = dustpath.cmd.web:main
+
